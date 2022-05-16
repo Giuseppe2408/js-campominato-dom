@@ -2,31 +2,61 @@ const gridEl = document.getElementById('grid')
 const select = document.getElementById('livello')
 const btn = document.querySelector('button');
 
-const creazioneelemento = () => {
+const creazioneelemento = (classDiv) => {
     const node = document.createElement('div');
-    node.className = "square";
+    node.className = classDiv;
     return node;
 }
 
 btn.addEventListener ('click',
 
     () => {
-        const mynewarrRandom = createrandnum (100, 1, 100)
-        console.log(mynewarrRandom);
+        let ncells;
+        let classcells
 
+        // svuotare griglia
+        gridEl.innerHTML = "";
+
+        // valore select
+        const chooseLvl = parseInt(select.value);
+        console.log(chooseLvl);
+
+        switch (chooseLvl) {
+            case 0:
+            default:  
+            ncells = 100;
+            classcells = "square-1"
+            break;
+        
+            case 1:
+            ncells = 81;
+            classcells = "square-2"
+            break;
+
+            case 2:
+            ncells = 49;
+            classcells = "square-3"    
+            break;    
+        }
+
+
+
+        const mynewarrRandom = createrandnum (ncells, 1, ncells)
+        console.log(mynewarrRandom);
+        debugger;
         for (let index = 0; index < mynewarrRandom.length; index++) {
-            const divEl = creazioneelemento();
+            const divEl = creazioneelemento(classcells);
             let arrayitem = mynewarrRandom[index];
             
             divEl.addEventListener ('click',
 
                 () => {
-                    this.append(arrayitem);
+                    divEl.append(arrayitem);
 
                     if (arrayitem %2 === 0) {
-                        this.classList.add('clicked-blue');
+                        divEl.classList.add('clicked-blue');
                     } else {
-                        this.classList.add('clicked-red');
+                        divEl.classList.add('clicked-red');
                     }
 
                     
@@ -43,7 +73,10 @@ btn.addEventListener ('click',
 )
 
 
-
+function getrandomnum(rangeMin, rangeMax) {
+    let result = Math.floor(Math.random() * 100 )
+    return result;
+}
 
 function createrandnum(numItems, min, max) {
     const arrInt = [];
@@ -56,7 +89,3 @@ function createrandnum(numItems, min, max) {
     return arrInt;
 }
 
-function getrandomnum(rangeMin, rangeMax) {
-    let result = Math.floor(Math.random() * (rangeMax - rangeMin))
-    return result;
-}
