@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+}
+
+.square-1 {
+    flex-basis: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid green;
+}
+
+.square-2 {
+    flex-basis: calc(100% / 9);
+    height: calc(100% / 9);
+    border: 1px solid orange;
+}
+
+.square-3 {
+    flex-basis: calc(100% / 7);
+    height: calc(100% / 7);
+    border: 1px solid red;
+}
+
+.clicked-blue {
+    background-color: blue;
+}
+
+.clicked-red {
+    background-color: red;
+}
