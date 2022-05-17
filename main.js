@@ -2,6 +2,7 @@ const gridEl = document.getElementById('grid')
 const select = document.getElementById('livello')
 const btn = document.querySelector('button');
 
+
 const creazioneelemento = (classDiv) => {
     const node = document.createElement('div');
     node.className = classDiv;
@@ -43,7 +44,10 @@ btn.addEventListener ('click',
 
         const mynewarrRandom = createrandnum (ncells, 1, ncells)
         console.log(mynewarrRandom);
-        debugger;
+        
+        const bomb = createrandnum(16, 1, ncells);
+        console.log(bomb);
+
         for (let index = 0; index < mynewarrRandom.length; index++) {
             const divEl = creazioneelemento(classcells);
             let arrayitem = mynewarrRandom[index];
@@ -51,15 +55,16 @@ btn.addEventListener ('click',
             divEl.addEventListener ('click',
 
                 () => {
-                    divEl.append(arrayitem);
 
-                    if (arrayitem %2 === 0) {
-                        divEl.classList.add('clicked-blue');
+                    if (!bomb.includes(arrayitem)) {
+                        divEl.classList.add('clicked-blue');  
                     } else {
-                        divEl.classList.add('clicked-red');
+                        divEl.classList.add('clicked-red')
+                        console.log('hai perso!');
                     }
 
-                    
+                    divEl.append(arrayitem);                  
+                                                   
                 }
         
             )
